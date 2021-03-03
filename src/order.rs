@@ -1,3 +1,12 @@
+/**
+ * File              : order.rs
+ * Author            : leoatchina <leoatchina@outlook.com>
+ * Date              : 2021.03.03
+ * Last Modified Date: 2021.03.03
+ * Last Modified By  : leoatchina <leoatchina@outlook.com>
+ */
+
+
 //! Ordering algorithms.
 
 /// A comparator on partially ordered elements, that panics if they are incomparable
@@ -46,7 +55,9 @@ pub fn merge_sorted<T: PartialOrd>(
 }
 
 /// A stable sort
-pub fn merge_sort<T: Ord>(mut v: Vec<T>) -> Vec<T> {
+pub fn merge_sort<T: Ord>(
+    mut v: Vec<T>,
+) -> Vec<T> {
     if v.len() < 2 {
         v
     } else {
@@ -91,9 +102,9 @@ impl SparseIndex {
 //        we conclude that del(N sqrt Q) >= N / 2.
 #[derive(Default)]
 pub struct PiecewiseLinearConvexFn {
-    recent_lines: Vec<(f64, f64)>,
-    sorted_lines: Vec<(f64, f64)>,
-    intersections: Vec<f64>,
+    recent_lines:   Vec<(f64, f64)>,
+    sorted_lines:   Vec<(f64, f64)>,
+    intersections:  Vec<f64>,
     amortized_work: usize,
 }
 
@@ -222,12 +233,12 @@ mod test {
             [1, -1, -2, -3, -3, -3],
             [1, -1, -2, -1, 0, 1],
         ];
-        let mut func = PiecewiseLinearConvexFn::default();
-        assert_eq!(func.evaluate(0.0), -1e18);
-        for (&(slope, intercept), expected) in lines.iter().zip(results.iter()) {
-            func.max_with(slope as f64, intercept as f64);
-            let ys: Vec<i64> = xs.iter().map(|&x| func.evaluate(x as f64) as i64).collect();
-            assert_eq!(expected, &ys[..]);
-        }
+            let mut func = PiecewiseLinearConvexFn::default();
+            assert_eq!(func.evaluate(0.0), -1e18);
+            for (&(slope, intercept), expected) in lines.iter().zip(results.iter()) {
+                func.max_with(slope as f64, intercept as f64);
+                let ys: Vec<i64> = xs.iter().map(|&x| func.evaluate(x as f64) as i64).collect();
+                assert_eq!(expected, &ys[..]);
+            }
     }
 }

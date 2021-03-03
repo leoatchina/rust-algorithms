@@ -1,3 +1,11 @@
+/**
+ * File              : scanner.rs
+ * Author            : leoatchina <leoatchina@outlook.com>
+ * Date              : 2021.03.03
+ * Last Modified Date: 2021.03.03
+ * Last Modified By  : leoatchina <leoatchina@outlook.com>
+ */
+
 //! Generic utility for reading data from standard input, based on [voxl's
 //! stdin wrapper](http://codeforces.com/contest/702/submission/19589375).
 use std::io;
@@ -19,7 +27,7 @@ impl<R: io::BufRead> Scanner<R> {
 
     /// Use "turbofish" syntax token::<T>() to select data type of next token.
     ///
-    /// # Panics
+    /// Panics
     ///
     /// Panics if there's an I/O error or if the token cannot be parsed as T.
     pub fn token<T: str::FromStr>(&mut self) -> T {
